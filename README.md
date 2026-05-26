@@ -35,7 +35,7 @@ CreditSea is an enterprise-grade, full-stack **Loan Management System (LMS)** de
 *   **Framework**: Express.js
 *   **Database**: MongoDB with Mongoose ODM
 *   **Authentication**: JWT (JSON Web Tokens) & Bcrypt hashing
-*   **File Storage**: Multer (Local storage config for salary slips)
+*   **File Storage**: Multer & Cloudinary (Persistent cloud storage for salary slips)
 *   **Engines**: Custom Business Rules Engine (BRE) & Financial Math Engine
 
 ---
@@ -100,6 +100,9 @@ Ensure you have the following installed on your local machine:
     JWT_SECRET=your_jwt_signing_secret
     JWT_EXPIRE=24h
     UPLOAD_DIR=uploads/
+    CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+    CLOUDINARY_API_KEY=your_cloudinary_api_key
+    CLOUD_NAME=your_cloudinary_cloud_name
     ```
 4.  **Seed the Database**:
     Populate default users and system roles needed for evaluating the workflows:

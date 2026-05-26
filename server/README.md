@@ -20,7 +20,7 @@ server/
 │   │
 │   ├── middleware/             # Express middlewares
 │   │   ├── auth.middleware.ts  # JWT checks and Role-based Route validation
-│   │   └── upload.middleware.ts# Multer storage configuration for salary slips
+│   │   └── upload.middleware.ts# Multer + Cloudinary storage config for salary slips
 │   │
 │   ├── models/                 # Mongoose Database Models
 │   │   ├── user.model.ts       # Authentication credentials and role schemas
@@ -83,7 +83,7 @@ All endpoints are prefixed with `/api`. Authenticated endpoints require a bearer
 ### 👤 Borrower (`/borrowers`)
 *   **`GET /borrowers/profile`**: Returns the active borrower's configuration, step status, and demographic info.
 *   **`POST /borrowers/personal-details`**: Submits step-1 data. Executes BRE rules.
-*   **`POST /borrowers/upload-salary-slip`**: Handles file uploads via Multer. Enforces standard image and PDF formats (5MB limit) and stores them in the `uploads/` folder.
+*   **`POST /borrowers/upload-salary-slip`**: Handles file uploads via Multer. Enforces standard image and PDF formats (5MB limit) and streams them securely to Cloudinary.
 
 ### 💵 Loans Lifecycle (`/loans`)
 *   **`POST /loans/apply`**: Creates a new loan record using specified principal and tenure. Automatically calculates interest and schedules, transitioning loan status to `Applied`.
@@ -111,6 +111,9 @@ Run the following commands inside the `server/` folder:
     JWT_SECRET=creditsea_jwt_secret
     JWT_EXPIRE=24h
     UPLOAD_DIR=uploads/
+    CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+    CLOUDINARY_API_KEY=your_cloudinary_api_key
+    CLOUD_NAME=your_cloudinary_cloud_name
     ```
 2.  **Seed default users**:
     ```bash
