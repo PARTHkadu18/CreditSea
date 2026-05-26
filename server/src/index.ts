@@ -75,15 +75,19 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   });
 });
 
-// Start listening
-const server = app.listen(config.port, () => {
-  console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${config.port}`);
-  console.log(`API health available at http://localhost:${config.port}/api/health`);
-});
+// Start listening if not running on Vercel serverless environment
+if (!process.env.VERCEL) {
+  const server = app.listen(config.port, () => {
+    console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${config.port}`);
+    console.log(`API health available at http://localhost:${config.port}/api/health`);
+  });
 
-// Handle unhandled promise rejections
-process.on('unhandledRejection', (err: Error) => {
-  console.error(`Unhandled Promise Rejection: ${err.message}`);
-  // Close server & exit process
-  server.close(() => process.exit(1));
-});
+  // Handle unhandled promise rejections
+  process.on('unhandledRejection', (err: Error) => {
+    console.error(`Unhandled Promise Rejection: ${err.message}`);
+    // Close server & exit process
+    server.close(() => process.exit(1));
+  });
+}
+
+export default app;
