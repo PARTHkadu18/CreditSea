@@ -130,8 +130,11 @@ export default function SanctionPage() {
             const profile = item.profile;
             const isActingOnThis = decidingId === loan._id;
             
-            // Construct full download path
-            const salarySlipUrl = `http://localhost:5000/${loan.salarySlipPath}`;
+            // Construct full download path using the deployed backend base URL
+            const backendBase = process.env.NEXT_PUBLIC_API_URL
+              ? process.env.NEXT_PUBLIC_API_URL.replace('/api', '')
+              : 'https://credit-sea-backend-pi.vercel.app';
+            const salarySlipUrl = `${backendBase}/${loan.salarySlipPath}`;
 
             return (
               <div 

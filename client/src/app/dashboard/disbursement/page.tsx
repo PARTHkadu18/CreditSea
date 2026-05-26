@@ -122,7 +122,7 @@ export default function DisbursementPage() {
                       <h4 className="font-bold text-slate-100 text-sm tracking-wide">
                         {profile ? profile.fullName : 'Borrower User'}
                       </h4>
-                      <span className="text-[10px] text-slate-500 block">ID: {loan.borrowerId}</span>
+                      <span className="text-[10px] text-slate-500 block">ID: {loan.borrower_id}</span>
                     </div>
                     <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[9px] font-bold uppercase tracking-wider">
                       Approved
