@@ -142,7 +142,7 @@ export const uploadSalarySlipController = async (req: Request, res: Response): P
     const document = await DocumentModel.create({
       userId: req.user._id,
       filename: req.file.filename,
-      path: `uploads/${req.file.filename}`, // relative URL/path
+      path: req.file.path, // Store the Cloudinary secure URL directly
       mimetype: req.file.mimetype,
       size: req.file.size,
     });

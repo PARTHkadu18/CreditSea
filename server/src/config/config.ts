@@ -12,5 +12,10 @@ export const config = {
   uploadDir: process.env.UPLOAD_DIR || 'uploads/',
   absUploadDir: process.env.VERCEL
     ? '/tmp'
-    : path.join(__dirname, '../../', process.env.UPLOAD_DIR || 'uploads/')
+    : path.join(__dirname, '../../', process.env.UPLOAD_DIR || 'uploads/'),
+  cloudinary: {
+    cloudName: process.env.CLOUD_NAME || '',
+    apiKey: process.env.CLOUDINARY_API_KEY || '',
+    apiSecret: process.env.CLOUDINARY_API_SECRET || '',
+  }
 };
